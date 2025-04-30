@@ -1,0 +1,6 @@
+point 1: 
+in migration currently my user ids are taking integer but my user id might just have name in case of teacher i need to check how to handle that thing , consider this as a future issue , currently work with student ids ;
+
+point 2: 
+i need to update migration down function 
+reason : if i don't update then any updates i make to table then whole table will be droped 

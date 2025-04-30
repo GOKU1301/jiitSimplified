@@ -1,0 +1,56 @@
+# Dependencies
+node_modules/
+**/node_modules/
+/.pnp
+.pnp.js
+
+# Environment files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+**/.env
+
+# Next.js
+/d_portal/jiit_simplified_frontend/.next/
+/d_portal/jiit_simplified_frontend/out/
+/d_portal/jiit_simplified_frontend/build/
+
+# Backend
+/jiitSimplified_backend/backend/uploads/
+/jiitSimplified_backend/backend/dist/
+/jiitSimplified_backend/backend/coverage/
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+debug.log
+*.log
+
+# IDE and Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+*.pem
+
+# Testing
+/coverage
+/jiitSimplified_backend/backend/coverage
+
+# Misc
+.DS_Store
+*.pem
+.vercel
+.env*.local
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# Cache
+.cache/
+.next/cache/

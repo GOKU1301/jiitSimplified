@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Dashboard</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        padding: 30px;
+        background-color: #f9f9f9;
+      }
+
+      .top-bar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logout-button {
+        background-color: #e74c3c;
+        color: white;
+        padding: 10px 16px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+      }
+
+      .form-section {
+        margin-top: 30px;
+      }
+
+      input[type='text'],
+      select {
+        padding: 8px;
+        margin-right: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+
+      .term-buttons button {
+        padding: 8px 12px;
+        margin-right: 8px;
+        border: 1px solid #3498db;
+        background-color: white;
+        color: #3498db;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .term-buttons button.active {
+        background-color: #3498db;
+        color: white;
+      }
+
+      .submit-button {
+        margin-top: 20px;
+        padding: 10px 20px;
+        background-color: #2ecc71;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-bar">
+      <h2>Dashboard</h2>
+      <a href="/auth/logout" class="logout-button">Logout</a>
+    </div>
+
+    <div class="form-section">
+      <input
+        type="text"
+        id="search"
+        placeholder="Search subject or paper code"
+      />
+
+      <div class="term-buttons">
+        <button type="button" class="term-btn" data-term="T1">T1</button>
+        <button type="button" class="term-btn" data-term="T2">T2</button>
+        <button type="button" class="term-btn" data-term="T3">T3</button>
+      </div>
+
+      <div style="margin-top: 15px">
+        <label>From Year:</label>
+        <select id="fromYear">
+          <option value="">--</option>
+          <script>
+            for (let year = 2015; year <= new Date().getFullYear(); year++) {
+              document.write(`<option value="${year}">${year}</option>`);
+            }
+          </script>
+        </select>
+
+        <label>To Year:</label>
+        <select id="toYear">
+          <option value="">--</option>
+          <script>
+            for (let year = 2015; year <= new Date().getFullYear(); year++) {
+              document.write(`<option value="${year}">${year}</option>`);
+            }
+          </script>
+        </select>
+      </div>
+
+      <button class="submit-button" onclick="submitSearch()">Search</button>
+    </div>
+
+    <script>
+      let selectedTerms = [];
+
+      document.querySelectorAll('.term-btn').forEach((button) => {
+        button.addEventListener('click', () => {
+          const term = button.getAttribute('data-term');
+
+          if (selectedTerms.includes(term)) {
+            selectedTerms = selectedTerms.filter((t) => t !== term);
+            button.classList.remove('active');
+          } else {
+            selectedTerms.push(term);
+            button.classList.add('active');
+          }
+        });
+      });
+
+      function submitSearch() {
+        const query = document.getElementById('search').value.trim();
+        const fromYear = document.getElementById('fromYear').value;
+        const toYear = document.getElementById('toYear').value;
+        const terms = selectedTerms.join(',');
+
+        const params = new URLSearchParams({
+          query,
+          fromYear,
+          toYear,
+          terms,
+        });
+
+        console.log('Submitting search with params:', params.toString());
+
+        fetch(`/papers/search?${params.toString()}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        })
+          .then((res) => res.json())
+          .then(console.log)
+          .catch(console.error);
+      }
+    </script>
+  </body>
+</html>

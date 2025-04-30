@@ -1,0 +1,28 @@
+{
+  "name": "jiit-simplified-monorepo",
+  "version": "1.0.0",
+  "description": "JIIT Simplified paper portal - full stack application",
+  "scripts": {
+    "install:all": "npm install && cd jiitSimplified/backend && npm install && cd ../../jiit_simplified_frontend && npm install",
+    "dev:backend": "cd jiitSimplified/backend && npm run dev",
+    "dev:frontend": "cd jiit_simplified_frontend && npm run dev",
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "build:backend": "cd jiitSimplified/backend && npm run build",
+    "build:frontend": "cd jiit_simplified_frontend && npm run build",
+    "build": "npm run build:backend && npm run build:frontend",
+    "start:backend": "cd jiitSimplified/backend && npm start",
+    "start:frontend": "cd jiit_simplified_frontend && npm start",
+    "start": "concurrently \"npm run start:backend\" \"npm run start:frontend\""
+  },
+  "keywords": [
+    "jiit",
+    "papers",
+    "education",
+    "university"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.1"
+  }
+} 
