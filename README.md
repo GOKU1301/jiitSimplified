@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 # JIIT Simplified Paper Portal
 
 A full-stack application that allows JIIT students to upload, search, and download past exam papers. The platform helps students prepare for exams by providing easy access to previous papers organized by subject, year, and term.
